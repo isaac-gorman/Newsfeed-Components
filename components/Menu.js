@@ -1,12 +1,12 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out",
 ];
 
 /* 
@@ -31,3 +31,52 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+
+// Menu Bar)
+const htmlPage = document.querySelector("html");
+// htmlPage.style.zIndex = "-1"
+
+const menuButton = document.querySelector(".menu-button");
+
+// 1) Create a menu div
+let newMenuBar = document.createElement("div");
+// newMenuBar.style.zIndex = "1";
+newMenuBar.style.display = "none";
+newMenuBar.style.width = "100%";
+newMenuBar.style.height = "500px";
+newMenuBar.style.backgroundColor = "#3B3B3B";
+htmlPage.prepend(newMenuBar);
+
+const menuNav = document.createElement("nav");
+menuNav.style.display = "flex";
+menuNav.style.flexDirection = "column";
+menuNav.style.justifyContent = "center";
+menuNav.style.alignItems = "center";
+menuNav.style.height = "100%";
+// menuNav.style.padding = "60px";
+newMenuBar.prepend(menuNav);
+
+// Step 2)
+function createAElements(arr) {
+  let result = arr.map(function callback(crrV) {
+    let newALink = document.createElement("a");
+    newALink.textContent = crrV;
+    newALink.style.color = "white";
+    newALink.style.fontSize = "1rem";
+    newALink.style.marginTop = "10px";
+    newALink.style.marginBottom = "10px";
+    return menuNav.appendChild(newALink);
+  });
+  return result;
+}
+
+// 3) Enable the menuNav to Open and close by clicking the menu button.
+menuButton.addEventListener("click", function callback(e) {
+  if (newMenuBar.style.display === "none") {
+    newMenuBar.style.display = "block";
+  } else {
+    newMenuBar.style.display = "none";
+  }
+});
+
+createAElements(menuItems);
